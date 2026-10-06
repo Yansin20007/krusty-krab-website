@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Krusty Krab - Bikini Bottom Food Delivery</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar">
+
+            <div class="sidebar-top">
+
+                <div class="brand">
+                    <div class="brand-icon">🦀</div>
+
+                    <div class="brand-text">
+                        <strong>KRUSTY</strong>
+                        <span>KRAB</span>
+                    </div>
+                </div>
+
+                <button class="close-sidebar" id="closeSidebar">
+                    ×
+                </button>
+
+            </div>
+
+            <div class="sidebar-scroll">
+
+                <div class="menu-title">
+                    MENU
+                </div>
+
+                <nav class="category-menu">
+
+                    <button class="category-btn active" data-category="all">
+                        <span>🍔</span>
+                        <span>Tất cả món</span>
+                    </button>
+
+                    <button class="category-btn" data-category="patty">
+                        <span>🍔</span>
+                        <span>Krabby Patties</span>
+                    </button>
+
+                    <button class="category-btn" data-category="side">
+                        <span>🍟</span>
+                        <span>Món phụ</span>
+                    </button>
+
+                    <button class="category-btn" data-category="drink">
+                        <span>🥤</span>
+                        <span>Đồ uống Bikini Bottom</span>
+                    </button>
+
+                    <button class="category-btn" data-category="dessert">
+                        <span>🍰</span>
+                        <span>Tráng miệng</span>
+                    </button>
+
+                    <button class="category-btn" data-category="combo">
+                        <span>🍱</span>
+                        <span>Combo tiết kiệm</span>
+                    </button>
+
+                </nav>
+
+                <div class="sidebar-divider"></div>
+
+                <div class="menu-title">
+                    BỘ LỌC
+                </div>
+
+                <div class="filter-box">
+
+                    <label>
+                        Khoảng giá
+                    </label>
+
+                    <div class="price-inputs">
+
+                        <input
+                            type="number"
+                            id="minPrice"
+                            placeholder="Từ"
+                            min="0"
+                        >
+
+                        <span>—</span>
+
+                        <input
+                            type="number"
+                            id="maxPrice"
+                            placeholder="Đến"
+                            min="0"
+                        >
+
+                    </div>
+
+                    <label>
+                        Đánh giá
+                    </label>
+
+                    <div class="rating-filter">
+
+                        <button data-rating="5">
+                            ⭐ 5.0
+                        </button>
+
+                        <button data-rating="4">
+                            ⭐ 4.0+
+                        </button>
+
+                        <button data-rating="3">
+                            ⭐ 3.0+
+                        </button>
+
+                    </div>
+
+                    <label>
+                        Loại món
+                    </label>
+
+                    <div class="food-type">
+
+                        <label class="checkbox">
+                            <input type="checkbox" id="vegetarianFilter">
+                            <span>Món chay</span>
+                        </label>
+
+                        <label class="checkbox">
+                            <input type="checkbox" id="meatFilter">
+                            <span>Món mặn</span>
+                        </label>
+
+                    </div>
+
+                    <button class="clear-filter" id="clearFilters">
+                        Xóa bộ lọc
+                    </button>
+
+                </div>
+
+                <div class="sidebar-divider"></div>
+
+                <div class="delivery-card">
+
+                    <div class="delivery-icon">
+                        🚀
+                    </div>
+
+                    <div>
+                        <strong>Giao hàng siêu tốc</strong>
+                        <p>
+                            Nhận món trong khoảng 25 - 35 phút.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="offer-card">
+
+                    <span class="offer-label">
+                        HOT DEAL
+                    </span>
+
+                    <h3>
+                        Combo Krabby
+                    </h3>
+
+                    <p>
+                        Giảm đến 30% mỗi ngày!
+                    </p>
+
+                    <button onclick="selectCategory('combo')">
+                        Xem ưu đãi
+                    </button>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN -->
+        <main class="main">
+
+            <!-- HEADER -->
+            <header class="header">
+
+                <button class="menu-toggle" id="openSidebar">
+                    ☰
+                </button>
+
+                <div class="mobile-logo">
+                    🦀 KRUSTY KRAB
+                </div>
+
+                <div class="search-area">
+
+                    <span class="search-icon">
+                        🔎
+                    </span>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Tìm Krabby Patty, Kelp Fries..."
+                        autocomplete="off"
+                    >
+
+                    <button id="clearSearch" class="clear-search">
+                        ×
+                    </button>
+
+                </div>
+
+                <div class="header-actions">
+
+                    <button class="account-btn" id="accountBtn">
+                        <span>👤</span>
+                        <span class="account-text">
+                            Đăng nhập
+                        </span>
+                    </button>
+
+                    <button class="cart-btn" id="cartButton">
+
+                        <span class="cart-icon">
+                            🛒
+                        </span>
+
+                        <span class="cart-label">
+                            Giỏ hàng
+                        </span>
+
+                        <span class="cart-badge" id="cartBadge">
+                            0
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- CONTENT -->
+            <div class="content">
+
+                <!-- HERO -->
+                <section class="hero">
+
+                    <div class="hero-content">
+
+                        <div class="hero-tag">
+                            🌊 BIKINI BOTTOM SPECIAL
+                        </div>
+
+                        <h1>
+                            KRABBY PATTY
+                            <span>THƯỢNG HẠNG</span>
+                        </h1>
+
+                        <p>
+                            Công thức huyền thoại từ đáy biển.
+                            Tươi ngon, nóng hổi và được giao tận nơi.
+                        </p>
+
+                        <div class="hero-buttons">
+
+                            <button
+                                class="primary-btn"
+                                onclick="quickHeroProduct()"
+                            >
+                                Đặt ngay
+                                <span>→</span>
+                            </button>
+
+                            <button
+                                class="secondary-btn"
+                                onclick="selectCategory('patty')"
+                            >
+                                Xem menu
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="hero-food">
+                        <div class="hero-circle"></div>
+
+                        <img
+                            src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=85"
+                            alt="Krabby Patty"
+                        >
+
+                        <div class="floating-price">
+                            <span>CHỈ</span>
+                            <strong>69K</strong>
+                        </div>
+
+                        <div class="floating-star">
+                            ⭐
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- TOOLBAR -->
+                <section class="products-header">
+
+                    <div>
+
+                        <p class="section-label">
+                            FRESH FROM THE OCEAN
+                        </p>
+
+                        <h2 id="sectionTitle">
+                            Món ngon Bikini Bottom
+                        </h2>
+
+                        <p class="result-count" id="resultCount">
+                            15 món ăn
+                        </p>
+
+                    </div>
+
+                    <div class="sort-box">
+
+                        <label for="sortSelect">
+                            Sắp xếp:
+                        </label>
+
+                        <select id="sortSelect">
+
+                            <option value="popular">
+                                Bán chạy nhất
+                            </option>
+
+                            <option value="newest">
+                                Mới nhất
+                            </option>
+
+                            <option value="priceAsc">
+                                Giá thấp → cao
+                            </option>
+
+                            <option value="priceDesc">
+                                Giá cao → thấp
+                            </option>
+
+                            <option value="rating">
+                                Đánh giá cao nhất
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </section>
+
+
+                <!-- PRODUCTS -->
+                <section class="product-grid" id="productGrid"></section>
+
+
+                <!-- EMPTY -->
+                <div class="empty-state" id="emptyState">
+
+                    <div>
+                        🐙
+                    </div>
+
+                    <h3>
+                        Không tìm thấy món ăn
+                    </h3>
+
+                    <p>
+                        Hãy thử từ khóa hoặc bộ lọc khác nhé!
+                    </p>
+
+                    <button
+                        class="primary-btn"
+                        onclick="resetEverything()"
+                    >
+                        Xem tất cả món
+                    </button>
+
+                </div>
+
+
+                <!-- FEATURES -->
+                <section class="feature-strip">
+
+                    <div class="feature">
+                        <span>⚡</span>
+                        <div>
+                            <strong>Giao nhanh</strong>
+                            <small>25 - 35 phút</small>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <span>🥬</span>
+                        <div>
+                            <strong>Nguyên liệu tươi</strong>
+                            <small>Mỗi ngày từ biển</small>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <span>💳</span>
+                        <div>
+                            <strong>Thanh toán tiện lợi</strong>
+                            <small>COD / QR / Ví</small>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <span>🛡️</span>
+                        <div>
+                            <strong>Đảm bảo chất lượng</strong>
+                            <small>Hoàn tiền nếu lỗi</small>
+                        </div>
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- FOOTER -->
+            <footer class="footer">
+
+                <div class="footer-grid">
+
+                    <div class="footer-brand">
+
+                        <div class="brand footer-logo">
+                            <div class="brand-icon">🦀</div>
+
+                            <div class="brand-text">
+                                <strong>KRUSTY</strong>
+                                <span>KRAB</span>
+                            </div>
+                        </div>
+
+                        <p>
+                            Nhà hàng fast food nổi tiếng nhất Bikini Bottom.
+                            Mang hương vị đại dương đến tận cửa nhà bạn.
+                        </p>
+
+                        <div class="socials">
+                            <a href="#">f</a>
+                            <a href="#">◎</a>
+                            <a href="#">▶</a>
+                            <a href="#">♪</a>
+                        </div>
+
+                    </div>
+
+                    <div class="footer-column">
+
+                        <h3>
+                            Cửa hàng
+                        </h3>
+
+                        <a href="#">Về Krusty Krab</a>
+                        <a href="#">Thực đơn</a>
+                        <a href="#">Khuyến mãi</a>
+                        <a href="#">Tuyển dụng</a>
+
+                    </div>
+
+                    <div class="footer-column">
+
+                        <h3>
+                            Hỗ trợ
+                        </h3>
+
+                        <a href="#">Trung tâm trợ giúp</a>
+                        <a href="#">Chính sách giao hàng</a>
+                        <a href="#">Chính sách đổi trả</a>
+                        <a href="#">Điều khoản sử dụng</a>
+
+                    </div>
+
+                    <div class="footer-column">
+
+                        <h3>
+                            Liên hệ
+                        </h3>
+
+                        <p>📍 Bikini Bottom, Pacific Ocean</p>
+                        <p>📞 1900 6868</p>
+                        <p>✉️ hello@krustykrab.vn</p>
+                        <p>🕐 08:00 - 23:00 mỗi ngày</p>
+
+                    </div>
+
+                </div>
+
+                <div class="footer-bottom">
+                    © 2026 Krusty Krab Food Delivery. Made with ❤️ under the sea.
+                </div>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- OVERLAY -->
+    <div class="overlay" id="overlay"></div>
+
+
+    <!-- QUICK VIEW MODAL -->
+    <div class="modal" id="quickModal">
+
+        <div class="modal-content quick-modal-content">
+
+            <button class="modal-close" data-close="quickModal">
+                ×
+            </button>
+
+            <div class="quick-image">
+
+                <img id="quickImage" src="" alt="">
+
+                <span id="quickBadge" class="product-badge">
+                    BEST SELLER
+                </span>
+
+            </div>
+
+            <div class="quick-info">
+
+                <p class="quick-category" id="quickCategory">
+                    KRABBY PATTY
+                </p>
+
+                <h2 id="quickName">
+                    Krabby Patty
+                </h2>
+
+                <div class="quick-rating">
+                    <span id="quickStars">★★★★★</span>
+                    <strong id="quickRating">4.9</strong>
+                    <span>(128 đánh giá)</span>
+                </div>
+
+                <p id="quickDescription">
+                    Món burger huyền thoại.
+                </p>
+
+                <div class="quick-price" id="quickPrice">
+                    69.000₫
+                </div>
+
+                <div class="option-group">
+
+                    <label>
+                        Kích cỡ
+                    </label>
+
+                    <div class="option-buttons">
+
+                        <button class="size-btn active" data-size="M">
+                            M
+                        </button>
+
+                        <button class="size-btn" data-size="L">
+                            L
+                        </button>
+
+                        <button class="size-btn" data-size="XL">
+                            XL
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="option-group">
+
+                    <label>
+                        Topping
+                    </label>
+
+                    <select id="toppingSelect">
+
+                        <option value="0">
+                            Không thêm topping
+                        </option>
+
+                        <option value="10000">
+                            + Phô mai biển — 10.000₫
+                        </option>
+
+                        <option value="15000">
+                            + Extra Patty — 15.000₫
+                        </option>
+
+                        <option value="12000">
+                            + Rong biển — 12.000₫
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="quick-actions">
+
+                    <div class="quantity-control">
+
+                        <button id="quickMinus">
+                            −
+                        </button>
+
+                        <span id="quickQuantity">
+                            1
+                        </span>
+
+                        <button id="quickPlus">
+                            +
+                        </button>
+
+                    </div>
+
+                    <button class="add-cart-large" id="quickAddButton">
+                        Thêm vào giỏ
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CART DRAWER -->
+    <aside class="cart-drawer" id="cartDrawer">
+
+        <div class="cart-header">
+
+            <div>
+                <p>YOUR ORDER</p>
+                <h2>
+                    Giỏ hàng
+                </h2>
+            </div>
+
+            <button id="closeCart">
+                ×
+            </button>
+
+        </div>
+
+        <div class="cart-body" id="cartBody"></div>
+
+        <div class="cart-footer">
+
+            <div class="cart-line">
+                <span>
+                    Tạm tính
+                </span>
+
+                <strong id="subtotal">
+                    0₫
+                </strong>
+            </div>
+
+            <div class="cart-line">
+                <span>
+                    Phí giao hàng
+                </span>
+
+                <strong id="deliveryFee">
+                    25.000₫
+                </strong>
+            </div>
+
+            <div class="cart-line total-line">
+                <span>
+                    Tổng cộng
+                </span>
+
+                <strong id="cartTotal">
+                    0₫
+                </strong>
+            </div>
+
+            <button class="checkout-btn" id="checkoutButton">
+                Thanh toán
+                <span>→</span>
+            </button>
+
+            <p class="free-delivery">
+                🚚 Miễn phí giao hàng cho đơn từ 300.000₫
+            </p>
+
+        </div>
+
+    </aside>
+
+
+    <!-- CHECKOUT MODAL -->
+    <div class="modal" id="checkoutModal">
+
+        <div class="modal-content checkout-content">
+
+            <button class="modal-close" data-close="checkoutModal">
+                ×
+            </button>
+
+            <div class="checkout-heading">
+
+                <span>
+                    🍔
+                </span>
+
+                <div>
+                    <p>
+                        KRUSTY KRAB DELIVERY
+                    </p>
+
+                    <h2>
+                        Thanh toán đơn hàng
+                    </h2>
+                </div>
+
+            </div>
+
+            <form id="checkoutForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>
+                            Họ và tên
+                        </label>
+
+                        <input
+                            type="text"
+                            id="customerName"
+                            placeholder="Nguyễn Văn A"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>
+                            Số điện thoại
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="customerPhone"
+                            placeholder="09xxxxxxxx"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Địa chỉ giao hàng
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customerAddress"
+                        placeholder="Số nhà, đường, phường/xã..."
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Ghi chú
+                    </label>
+
+                    <textarea
+                        id="customerNote"
+                        placeholder="Ví dụ: Gọi điện trước khi giao..."
+                    ></textarea>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>
+                        Phương thức thanh toán
+                    </label>
+
+                    <div class="payment-options">
+
+                        <label class="payment-option active">
+
+                            <input
+                                type="radio"
+                                name="payment"
+                                value="cod"
+                                checked
+                            >
+
+                            <span>
+                                💵
+                            </span>
+
+                            <div>
+                                <strong>COD</strong>
+                                <small>Thanh toán khi nhận</small>
+                            </div>
+
+                        </label>
+
+                        <label class="payment-option">
+
+                            <input
+                                type="radio"
+                                name="payment"
+                                value="qr"
+                            >
+
+                            <span>
+                                📱
+                            </span>
+
+                            <div>
+                                <strong>QR</strong>
+                                <small>Chuyển khoản</small>
+                            </div>
+
+                        </label>
+
+                        <label class="payment-option">
+
+                            <input
+                                type="radio"
+                                name="payment"
+                                value="wallet"
+                            >
+
+                            <span>
+                                💙
+                            </span>
+
+                            <div>
+                                <strong>Ví điện tử</strong>
+                                <small>Thanh toán online</small>
+                            </div>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <div class="checkout-summary">
+
+                    <span>
+                        Tổng thanh toán
+                    </span>
+
+                    <strong id="checkoutTotal">
+                        0₫
+                    </strong>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="place-order-btn"
+                >
+                    🦀 Đặt hàng ngay
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- SUCCESS MODAL -->
+    <div class="modal" id="successModal">
+
+        <div class="modal-content success-content">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h2>
+                Đặt hàng thành công!
+            </h2>
+
+            <p>
+                Cảm ơn bạn đã đặt món tại Krusty Krab.
+                Đội giao hàng đang chuẩn bị đơn hàng của bạn.
+            </p>
+
+            <div class="order-number">
+                Mã đơn hàng:
+                <strong id="orderNumber">
+                    KK-000000
+                </strong>
+            </div>
+
+            <button
+                class="primary-btn"
+                data-close="successModal"
+            >
+                Tiếp tục mua sắm
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- LOGIN MODAL -->
+    <div class="modal" id="loginModal">
+
+        <div class="modal-content login-content">
+
+            <button class="modal-close" data-close="loginModal">
+                ×
+            </button>
+
+            <div class="login-icon">
+                🦀
+            </div>
+
+            <h2>
+                Chào mừng trở lại!
+            </h2>
+
+            <p>
+                Đăng nhập để lưu địa chỉ và xem lịch sử đơn hàng.
+            </p>
+
+            <input
+                type="email"
+                placeholder="Email của bạn"
+            >
+
+            <input
+                type="password"
+                placeholder="Mật khẩu"
+            >
+
+            <button class="primary-btn login-submit">
+                Đăng nhập
+            </button>
+
+            <small>
+                Demo UI — không kết nối máy chủ.
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <!-- TOAST -->
+    <div class="toast" id="toast">
+        <span>
+            ✓
+        </span>
+
+        <div>
+            <strong id="toastTitle">
+                Thành công
+            </strong>
+
+            <p id="toastMessage">
+                Đã thêm vào giỏ hàng.
+            </p>
+        </div>
+    </div>
+
+
+    <script src="app.js"></script>
+
+</body>
+</html>
